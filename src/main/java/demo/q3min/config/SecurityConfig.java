@@ -2,6 +2,7 @@ package demo.q3min.config;
 
 
 import demo.q3min.config.oauth.PrincipalOauth2UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
     private final PrincipalOauth2UserService principalOauth2UserService;
 
     public SecurityConfig(PrincipalOauth2UserService principalOauth2UserService){
@@ -26,11 +28,14 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/login", "/join").permitAll())
+                        .requestMatchers("/login", "/join").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .formLogin((formLogin) -> formLogin.disable())
                 .httpBasic((httpBasic) -> httpBasic.disable())
-                .oauth2Login((oauth2Login) -> oauth2Login
-                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig.userService(principalOauth2UserService))
+                .oauth2Login((oauth2Login) ->
+                        oauth2Login
+                                .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig.userService(principalOauth2UserService))
                 )
                 .httpBasic(withDefaults());
         return http.build();

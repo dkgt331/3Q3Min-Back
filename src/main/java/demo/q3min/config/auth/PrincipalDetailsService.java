@@ -30,12 +30,7 @@ public class PrincipalDetailsService extends DefaultOAuth2UserService {
         User userEntity = userRepository.findByUsername(username);
 
         if (userEntity == null) {
-            userEntity = User.builder()
-                    .username(username)
-                    .email(email)
-                    .role(role)
-                    .serviceProvider(serviceProvider)
-                    .build();
+            userEntity = new User(username, email, serviceProvider, role);
             userRepository.save(userEntity);
         }
 

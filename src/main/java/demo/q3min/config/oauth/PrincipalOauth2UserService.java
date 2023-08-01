@@ -27,30 +27,16 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
         // 회원가입을 강제로 진행
         String provider = userRequest.getClientRegistration().getClientId();    // google, naver, ...
-        ServiceProvider serviceProvider = null;
         String providerId = oauth2User.getAttribute("sub");
         String username = provider + "_" + providerId;
         String email = oauth2User.getAttribute("email");
         String role = "ROLE_USER";
 
-        if (provider == "GOOGLE") {
-            serviceProvider = ServiceProvider.GOOGLE;
-        } else if (provider == "NAVER") {
-            serviceProvider = ServiceProvider.NAVER;
-        } else {
-            serviceProvider = ServiceProvider.KAKAO;
-        }
-
         User userEntity = userRepository.findByUsername(username);
 
         // 최초 구글로그인 -> 자동 회원가입 진행
         if (userEntity == null) {
-            userEntity = User.builder()
-                    .username(username)
-                    .email(email)
-                    .role(role)
-                    .serviceProvider(serviceProvider)
-                    .build();
+            userEntity = new User(username, email, provider, role);
             userRepository.save(userEntity);
         }
 
