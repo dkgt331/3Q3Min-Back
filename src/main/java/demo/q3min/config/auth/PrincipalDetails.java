@@ -1,4 +1,4 @@
-package demo.q3min.config;
+package demo.q3min.config.auth;
 
 import demo.q3min.entity.User;
 import lombok.Data;

@@ -12,6 +12,7 @@ import java.sql.Date;
 
 @Entity
 @Data
+@Builder
 public class User {
 
     @Id
