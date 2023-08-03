@@ -3,6 +3,7 @@ package demo.q3min.config.auth;
 import demo.q3min.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @Data
-public class PrincipalDetails implements OAuth2User {
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private User user;
     private Map<String, Object> attributes;
@@ -38,7 +39,37 @@ public class PrincipalDetails implements OAuth2User {
     }
 
     @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
     public String getName() {
-        return (String) attributes.get("sub");
+        return (String) attributes.get("name");
     }
 }

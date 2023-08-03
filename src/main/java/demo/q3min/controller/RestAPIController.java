@@ -11,4 +11,9 @@ public class RestAPIController {
         return "hello";
     }
 
+    @GetMapping("/authorize/hello")
+    public String authorizedHello() {
+        return "authorizedHello";
+    }
+
 }
