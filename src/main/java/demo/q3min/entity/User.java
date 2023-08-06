@@ -27,6 +27,12 @@ public class User {
     @Column(length = 50)
     private String username;
 
+    @Column(length = 100)
+    private String password;
+
+    @Column(length = 50)
+    private String name;
+
     @Column(length = 20)
     private String role;
 
@@ -46,12 +52,20 @@ public class User {
 
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getRole() {
         return this.role;
     }
 
     public String getUsername() {
         return this.username;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Builder
