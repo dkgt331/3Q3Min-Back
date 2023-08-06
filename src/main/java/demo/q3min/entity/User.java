@@ -72,9 +72,9 @@ public class User {
     public User(String email, String username, String serviceProvider, String role) {
         this.email = email;
         this.username = username;
-        if (serviceProvider == "GOOGLE") {
+        if (serviceProvider.contains("google")) {
             this.serviceProvider = ServiceProvider.GOOGLE;
-        } else if (serviceProvider == "NAVER") {
+        } else if (serviceProvider.contains("naver")) {
             this.serviceProvider = ServiceProvider.NAVER;
         } else {
             this.serviceProvider = ServiceProvider.KAKAO;

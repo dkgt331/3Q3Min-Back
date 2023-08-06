@@ -27,7 +27,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // 회원가입을 강제로 진행
         String provider = userRequest.getClientRegistration().getClientId();    // google, naver, ...
         String providerId = oauth2User.getAttribute("sub");
-        String username = provider + "_" + providerId;
+        String username = "google_" + providerId;
         String email = oauth2User.getAttribute("email");
         String role = "ROLE_USER";
 
@@ -35,7 +35,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         // 최초 구글로그인 -> 자동 회원가입 진행
         if (userEntity == null) {
-            userEntity = new User(username, email, provider, role);
+            userEntity = new User(email, username, provider, role);
             userRepository.save(userEntity);
         }
 

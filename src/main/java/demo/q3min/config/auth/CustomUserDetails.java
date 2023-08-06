@@ -1,7 +1,6 @@
 package demo.q3min.config.auth;
 
 import demo.q3min.entity.User;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-@Data
 public class CustomUserDetails implements UserDetails, OAuth2User {
 
     private final User user;
@@ -23,6 +21,11 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
     public CustomUserDetails(User user, Map<String, Object> attributes){
         this.user = user;
         this.attributes = attributes;
+    }
+
+    @Override
+    public <A> A getAttribute(String name) {
+        return OAuth2User.super.getAttribute(name);
     }
 
     @Override
@@ -53,8 +56,9 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return this.user.getUsername();
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -78,6 +82,6 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public String getName() {
-        return (String) attributes.get("sub");
+        return (String) attributes.get("name");
     }
 }
