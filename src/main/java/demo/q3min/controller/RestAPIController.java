@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestAPIController {
 
+    @GetMapping({"/", ""})
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/hello")
     public String hello() {
         return "hello";

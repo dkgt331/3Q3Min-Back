@@ -22,6 +22,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
+        System.out.println("[CustomOAuth2UserService] loadUser called.");
+
         OAuth2User oauth2User = super.loadUser(userRequest);
 
         // 회원가입을 강제로 진행
