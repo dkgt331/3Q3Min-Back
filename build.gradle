@@ -29,6 +29,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation "mysql:mysql-connector-java:8.0.32"
 	runtimeOnly "mysql:mysql-connector-java:5.1.46"
+	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2")
 
 }
 
