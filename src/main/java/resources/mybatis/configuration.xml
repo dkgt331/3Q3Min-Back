@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="demo.q3min.vo.QuestionVo"
+			alias="questionvo" />
+		<typeAlias type="demo.q3min.vo.AnswerVo"
+			alias="answervo" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mybatis/mappers/question.xml" />
+		<mapper resource="mybatis/mappers/answer.xml" />
+	</mappers>
+</configuration>
