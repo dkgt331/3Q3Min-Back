@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kugods.project.service.AnswerService;
-import com.kugods.project.vo.AnswerVo;
+import demo.q3min.service.AnswerService;
+import demo.q3min.vo.AnswerVo;
 
 @RestController
 @RequestMapping("/answer")

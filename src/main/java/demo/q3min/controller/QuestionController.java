@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kugods.project.service.QuestionService;
-import com.kugods.project.vo.QuestionVo;
+import demo.q3min.service.QuestionService;
+import demo.q3min.vo.QuestionVo;
 
 @RestController
 @RequestMapping("/question")

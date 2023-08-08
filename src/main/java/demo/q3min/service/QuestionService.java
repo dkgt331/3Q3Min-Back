@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kugods.project.repository.QuestionRepository;
-import com.kugods.project.vo.QuestionVo;
+import demo.q3min.repository.QuestionRepository;
+import demo.q3min.vo.QuestionVo;
 
 @Service
 public class QuestionService {

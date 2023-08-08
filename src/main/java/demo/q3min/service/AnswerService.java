@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kugods.project.repository.AnswerRepository;
-import com.kugods.project.vo.AnswerVo;
+import demo.q3min.repository.AnswerRepository;
+import demo.q3min.vo.AnswerVo;
 
 @Service
 public class AnswerService {

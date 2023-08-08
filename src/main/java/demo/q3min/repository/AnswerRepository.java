@@ -8,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kugods.project.exception.AnswerRepositoryException;
-import com.kugods.project.vo.AnswerVo;
+import demo.q3min.exception.AnswerRepositoryException;
+import demo.q3min.vo.AnswerVo;
 
 @Repository
 public class AnswerRepository {
