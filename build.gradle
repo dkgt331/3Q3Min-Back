@@ -2,7 +2,9 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.1'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'application'
 }
+mainClassName = 'demo.q3min.Application'
 
 group = 'demo'
 version = '0.0.1-SNAPSHOT'
@@ -32,9 +34,20 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation "mysql:mysql-connector-java:8.0.32"
 	runtimeOnly "mysql:mysql-connector-java:5.1.46"
-
-
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.1.4'
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '3.0.2'
 }
+
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()

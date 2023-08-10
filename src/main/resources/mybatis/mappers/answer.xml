@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="answer">
+
+
+	<insert id="insert" parameterType="answervo">
+		<![CDATA[
+			insert into answer values (null, #{content}, #{date}, #{questionID})
+		]]>
+	</insert>
+
+	<select id="findAnswerByDate" parameterType="string"
+		resultType="map">
+		<![CDATA[
+			select a.content as answer_content, b.content as question_content from answer a, question b where a.questionID = b.id and a.date=#{date}
+		]]>
+	</select>
+
+
+	<update id="updateContentByID" parameterType="map">
+		<![CDATA[
+			update answer set content=#{content} where id=#{id}
+		]]>
+	</update>
+
+	<select id="findQuestionAndAnswerByUserID" parameterType="long"
+		resultType="java.util.Map">
+	<![CDATA[
+		SELECT q.content AS question_content, a.content AS answer_content
+		FROM question q
+		INNER JOIN answer a ON q.id = a.questionID
+		WHERE q.userID = #{userID}
+	]]>
+	</select>
+
+</mapper>

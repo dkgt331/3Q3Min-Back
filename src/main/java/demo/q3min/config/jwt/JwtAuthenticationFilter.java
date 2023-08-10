@@ -35,7 +35,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        System.out.println("[JwtAuthenticationFilter] attemptAuthentication called.");
 
         ObjectMapper om = new ObjectMapper();
         LoginDto loginDto = null;
@@ -58,7 +57,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        System.out.println("[JwtAuthenticationFilter] successfulAuthentication called.");
 
         CustomUserDetails userDetails = (CustomUserDetails) authResult.getPrincipal();
 

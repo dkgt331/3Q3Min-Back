@@ -98,3 +98,7 @@ atlassian-ide-plugin.xml
 .vscode/
 
 cached-antora-playbook.yml
+
+## application properties
+application.yml
+application.properties
