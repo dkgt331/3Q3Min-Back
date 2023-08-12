@@ -1,7 +1,5 @@
 package demo.q3min.enums;
 
-import java.security.Provider;
-
 public enum ServiceProvider {
     GOOGLE("GOOGLE"), KAKAO("KAKAO"), NAVER("NAVER");
 

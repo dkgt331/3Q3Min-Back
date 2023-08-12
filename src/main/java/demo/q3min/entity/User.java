@@ -2,11 +2,14 @@ package demo.q3min.entity;
 
 
 import demo.q3min.enums.Mbti;
+import demo.q3min.enums.ProviderType;
+import demo.q3min.enums.RoleType;
 import demo.q3min.enums.ServiceProvider;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
 
@@ -34,7 +37,8 @@ public class User {
     private String name;
 
     @Column(length = 20)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -42,11 +46,15 @@ public class User {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private ServiceProvider serviceProvider;
+    private ProviderType providerType;
 
     @Column
     @CreationTimestamp
     private Date registerDate;
+
+    @Column
+    @UpdateTimestamp
+    private Date modifiedDate;
 
     public User() {
 
@@ -56,8 +64,8 @@ public class User {
         return this.id;
     }
 
-    public String getRole() {
-        return this.role;
+    public RoleType getRoleType() {
+        return this.roleType;
     }
 
     public String getUsername() {
@@ -66,20 +74,6 @@ public class User {
 
     public String getName() {
         return this.name;
-    }
-
-    @Builder
-    public User(String email, String username, String serviceProvider, String role) {
-        this.email = email;
-        this.username = username;
-        if (serviceProvider.contains("google")) {
-            this.serviceProvider = ServiceProvider.GOOGLE;
-        } else if (serviceProvider.contains("naver")) {
-            this.serviceProvider = ServiceProvider.NAVER;
-        } else {
-            this.serviceProvider = ServiceProvider.KAKAO;
-        }
-        this.role = role;
     }
 
 }
