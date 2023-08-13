@@ -1,4 +1,4 @@
-package demo.q3min.config;
+package demo.q3min.util;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

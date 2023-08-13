@@ -1,30 +1,32 @@
-package demo.q3min.config.auth;
+package demo.q3min.oauth.service;
 
 import demo.q3min.entity.User;
+import demo.q3min.oauth.entity.UserPrincipal;
 import demo.q3min.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        User user = userRepository.findByUsername(username);
-        if(user != null) {
-            return new CustomUserDetails(user);
+        Optional<User> optionalUser = userRepository.findByUserId(username);
+        User user = optionalUser.get();
+        if (user == null) {
+            throw new UsernameNotFoundException("Can not find username.");
         }
-        return null;
+        return UserPrincipal.create(user);
     }
 }
+

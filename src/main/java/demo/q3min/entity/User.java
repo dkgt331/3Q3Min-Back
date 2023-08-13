@@ -8,6 +8,7 @@ import demo.q3min.enums.ServiceProvider;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,11 +22,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(length = 64, unique = true)
+    @NotNull
+    private String userId;
+
     @Column(length = 100)
     private String email;
 
     @Column
-    private String profileImage; // 이미지가 저장된 경로 저장
+    private boolean isEmailVerified;
+
+    @Column
+    private String profileImageUrl; // 이미지가 저장된 경로 저장
 
     @Column(length = 50)
     private String username;
@@ -72,8 +80,24 @@ public class User {
         return this.username;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
+    public boolean getIsEmailVerified() {
+        return this.isEmailVerified;
+    }
+
     public String getName() {
         return this.name;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public String getProfileImageUrl() {
+        return this.profileImageUrl;
     }
 
 }
