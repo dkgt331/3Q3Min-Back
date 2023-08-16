@@ -39,7 +39,6 @@ public class UserService {
         return userRepository.findByID(id);
     }
 
-    /*수정 서비스 필요*/
     @Transactional
     public int update(Integer id, UserUpdateDto userUpdateDto) {
         Optional<User> target = userRepository.findByID(id);

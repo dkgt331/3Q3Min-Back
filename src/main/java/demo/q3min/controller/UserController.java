@@ -26,6 +26,8 @@ public class UserController {
         this.userService=userService;
     }*/
 
+    //회원 가입
+
     @PostMapping("/signup")
     public CreateMemberResponse signUp(@RequestBody CreateMemberRequest request){
 
@@ -37,11 +39,13 @@ public class UserController {
         return new CreateMemberResponse(id);
     }
 
+    //회원 조회
     @GetMapping("/search/{id}")
     public Optional<User> findUser(@PathVariable int id){
         return userService.searchUser(id);
     }
 
+    //회원 수정
     @PutMapping("/modify/{id}")
     public Map<String,Object> update(@PathVariable("id") Integer id, @RequestBody final UserUpdateDto userUpdateDto){
         Map<String, Object> response = new HashMap<>();
