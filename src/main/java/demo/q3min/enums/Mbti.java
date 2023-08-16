@@ -1,5 +1,7 @@
 package demo.q3min.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Mbti {
     ISTJ("ISTJ"), ISTP("ISTP"), ISFJ("ISFJ"), ISFP("ISFP"),
     INTJ("INTJ"), INTP("INTP"), INFJ("INFJ"), INFP("INFP"),
